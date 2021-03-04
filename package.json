@@ -1,6 +1,6 @@
 {
   "name": "@leafac/css",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Inline CSS with modest superpowers",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
