@@ -31,10 +31,6 @@
     "postcss-nested": "^5.0.4",
     "tagged-template-noop": "^2.1.1"
   },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
-  },
   "devDependencies": {
     "@types/jest": "^26.0.20",
     "@types/jsdom": "^16.2.6",
@@ -43,5 +39,9 @@
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.3",
     "typescript": "^4.2.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }
