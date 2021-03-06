@@ -13,6 +13,7 @@ export { default as css } from "tagged-template-noop";
 
 // TODO: Async?
 // TODO: Receive and produce JSDOM.
+// TODO: Avoid recomputing the nesting if the styles are the same… (use a Map instead of a Set)
 
 export function process(htmlWithInlineCSS: HTML): HTML {
   const dom = new JSDOM(htmlWithInlineCSS);
