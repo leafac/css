@@ -3,11 +3,10 @@ import crypto from "crypto";
 import { JSDOM } from "jsdom";
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
-import html from "@leafac/html";
+import { html, HTML } from "@leafac/html";
 import css from "tagged-template-noop";
 
-type HTML = string;
-type CSS = string;
+export type CSS = string;
 
 export { default as css } from "tagged-template-noop";
 
