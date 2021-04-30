@@ -10,63 +10,22 @@ test("No inline CSS", () => {
         <head></head>
         <body>
           <p>Leandro Facchinetti</p>
+          <p>30 years old</p>
         </body>
       </html>
     `)
   ).toMatchInlineSnapshot(`
-    "<!DOCTYPE html><html lang=\\"en\\"><head>
-          <style>
-            
-          </style>
-        </head>
+    "<!DOCTYPE html><html lang=\\"en\\"><head></head>
             <body>
               <p>Leandro Facchinetti</p>
+              <p>30 years old</p>
             
           
         </body></html>"
   `);
 });
 
-test("Plain inline CSS", () => {
-  expect(
-    process(html`
-      <!DOCTYPE html>
-      <html lang="en">
-        <head></head>
-        <body>
-          <p
-            style="${css`
-              background-color: red;
-            `}"
-          >
-            Leandro Facchinetti
-          </p>
-        </body>
-      </html>
-    `)
-  ).toMatchInlineSnapshot(`
-    "<!DOCTYPE html><html lang=\\"en\\"><head>
-          <style>
-            
-              .style--8059eb00e3c3b7ac1871c64b5902d00d470a612d7317a6079d6d9833c10d1e9a {
-                
-                  background-color: red;
-                
-              }
-            
-          </style>
-        </head>
-            <body>
-              <p class=\\"style--8059eb00e3c3b7ac1871c64b5902d00d470a612d7317a6079d6d9833c10d1e9a\\">
-                Leandro Facchinetti
-              </p>
-            
-          
-        </body></html>"
-  `);
-});
-
-test("Repeating inline CSS is reused", () => {
+test("Regular inline CSS is maintained", () => {
   expect(
     process(html`
       <!DOCTYPE html>
@@ -91,22 +50,12 @@ test("Repeating inline CSS is reused", () => {
       </html>
     `)
   ).toMatchInlineSnapshot(`
-    "<!DOCTYPE html><html lang=\\"en\\"><head>
-          <style>
-            
-              .style--8059eb00e3c3b7ac1871c64b5902d00d470a612d7317a6079d6d9833c10d1e9a {
-                
-                  background-color: red;
-                
-              }
-            
-          </style>
-        </head>
+    "<!DOCTYPE html><html lang=\\"en\\"><head></head>
             <body>
-              <p class=\\"style--8059eb00e3c3b7ac1871c64b5902d00d470a612d7317a6079d6d9833c10d1e9a\\">
+              <p style=\\"background-color: red\\">
                 Leandro Facchinetti
               </p>
-              <p class=\\"style--8059eb00e3c3b7ac1871c64b5902d00d470a612d7317a6079d6d9833c10d1e9a\\">
+              <p style=\\"background-color: red\\">
                 30 years old
               </p>
             
@@ -115,7 +64,7 @@ test("Repeating inline CSS is reused", () => {
   `);
 });
 
-test("Media queries (responsive design)", () => {
+test("Nested CSS (for example, media queries for responsive design, hover and other states, and so forth) is pulled out", () => {
   expect(
     process(html`
       <!DOCTYPE html>
@@ -124,158 +73,53 @@ test("Media queries (responsive design)", () => {
         <body>
           <p
             style="${css`
-              @media (max-width: 599px) {
-                background-color: red;
-              }
+              background-color: red;
 
-              @media (min-width: 600px) {
-                background-color: green;
+              @media (max-width: 599px) {
+                margin: 1rem;
               }
             `}"
           >
             Leandro Facchinetti
           </p>
-        </body>
-      </html>
-    `)
-  ).toMatchInlineSnapshot(`
-    "<!DOCTYPE html><html lang=\\"en\\"><head>
-          <style>
-            
-              @media (max-width: 599px) {
-              .style--8bc14dc83d80e901599db6a9f5ac095ae9d04e6a7a8e7c3bda4fb41a2b245d8c {
-                    background-color: red
-                
-              }
-                  }
-                
-                  @media (min-width: 600px) {
-              .style--8bc14dc83d80e901599db6a9f5ac095ae9d04e6a7a8e7c3bda4fb41a2b245d8c {
-                    background-color: green
-                
-              }
-                  }
-            
-          </style>
-        </head>
-            <body>
-              <p class=\\"style--8bc14dc83d80e901599db6a9f5ac095ae9d04e6a7a8e7c3bda4fb41a2b245d8c\\">
-                Leandro Facchinetti
-              </p>
-            
-          
-        </body></html>"
-  `);
-});
-
-test("Hover and other states", () => {
-  expect(
-    process(html`
-      <!DOCTYPE html>
-      <html lang="en">
-        <head></head>
-        <body>
-          <button
+          <p
+            id="age"
             style="${css`
               background-color: red;
 
               &:hover {
                 background-color: green;
               }
-
-              &::active {
-                background-color: blue;
-              }
             `}"
           >
-            Leandro Facchinetti
-          </button>
+            30 years old
+          </p>
         </body>
       </html>
     `)
   ).toMatchInlineSnapshot(`
     "<!DOCTYPE html><html lang=\\"en\\"><head>
-          <style>
-            
-              .style--a3737535bf0c7b44771724705adf79c3191593603dd1642a039c6a332dd81931 {
-                
-                  background-color: red;
-                
-              }
-
-                  .style--a3737535bf0c7b44771724705adf79c3191593603dd1642a039c6a332dd81931:hover {
-                    background-color: green;
-                  }
-
-                  .style--a3737535bf0c7b44771724705adf79c3191593603dd1642a039c6a332dd81931::active {
-                    background-color: blue;
-                  }
-            
-          </style>
-        </head>
-            <body>
-              <button class=\\"style--a3737535bf0c7b44771724705adf79c3191593603dd1642a039c6a332dd81931\\">
-                Leandro Facchinetti
-              </button>
-            
-          
-        </body></html>"
-  `);
-});
-
-test("Nesting", () => {
-  expect(
-    process(html`
-      <!DOCTYPE html>
-      <html lang="en">
-        <head></head>
-        <body
-          style="${css`
-            background-color: black;
-
-            button {
-              background-color: red;
-
-              &:hover {
-                background-color: green;
-              }
-
-              &::active {
-                background-color: blue;
-              }
-            }
-          `}"
-        >
-          <button>Leandro Facchinetti</button>
-        </body>
-      </html>
-    `)
-  ).toMatchInlineSnapshot(`
-    "<!DOCTYPE html><html lang=\\"en\\"><head>
-          <style>
-            
-              .style--b0d97b603220abceb999f7f9d9c5fb7cff631c626b49396860ffbd16c2937425 {
-                
-                background-color: black;
+            <style>
               
+              @media (max-width: 599px) {
+              #leafac-css--0 {
+                    margin: 1rem
               }
-
-                .style--b0d97b603220abceb999f7f9d9c5fb7cff631c626b49396860ffbd16c2937425 button {
-                  background-color: red;
-                }
-
-                .style--b0d97b603220abceb999f7f9d9c5fb7cff631c626b49396860ffbd16c2937425 button:hover {
-                    background-color: green;
-                  }
-
-                .style--b0d97b603220abceb999f7f9d9c5fb7cff631c626b49396860ffbd16c2937425 button::active {
-                    background-color: blue;
                   }
             
-          </style>
-        </head>
-            <body class=\\"style--b0d97b603220abceb999f7f9d9c5fb7cff631c626b49396860ffbd16c2937425\\">
-              <button>Leandro Facchinetti</button>
+              #age:hover {
+                    background-color: green;
+                  }
+            
+            </style>
+          </head>
+            <body>
+              <p style=\\"background-color: red\\" id=\\"leafac-css--0\\">
+                Leandro Facchinetti
+              </p>
+              <p id=\\"age\\" style=\\"background-color: red\\">
+                30 years old
+              </p>
             
           
         </body></html>"
