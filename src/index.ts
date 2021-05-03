@@ -9,7 +9,6 @@ export { default as css } from "tagged-template-noop";
 
 // TODO: Async?
 // TODO: Receive and produce JSDOM.
-// TODO: Avoid recomputing the nesting if the styles are the same… (use a Map instead of a Set)
 
 export function process(htmlWithInlineCSS: HTML): HTML {
   const dom = new JSDOM(htmlWithInlineCSS);
@@ -21,11 +20,11 @@ export function process(htmlWithInlineCSS: HTML): HTML {
     element.removeAttribute("style");
     if (element.id === "") element.id = `leafac-css--${styles.length}`;
     styles.push(
-      postcss([postcssNested]).process(css`
+      css`
         #${element.id} {
           ${style}
         }
-      `).css
+      `
     );
   }
 
@@ -33,7 +32,7 @@ export function process(htmlWithInlineCSS: HTML): HTML {
     "beforeend",
     html`
       <style>
-        $${styles}
+        $${postcss([postcssNested]).process(styles.join("")).css}
       </style>
     `
   );

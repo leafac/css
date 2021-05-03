@@ -57,8 +57,8 @@ test("Inline styles with nested CSS (for example, media queries for responsive d
                   background-color: red;
                 
             }
-
-                  #age:hover {
+          
+            #age:hover {
                     background-color: green;
                   }
           
