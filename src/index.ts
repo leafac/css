@@ -85,6 +85,13 @@ export const preamble = css`
     --font-weight--extrabold: 800;
     --font-weight--black: 900;
 
+    --letter-spacing--tighter: -0.05em;
+    --letter-spacing--tight: -0.025em;
+    --letter-spacing--normal: 0em;
+    --letter-spacing--wide: 0.025em;
+    --letter-spacing--wider: 0.05em;
+    --letter-spacing--widest: 0.1em;
+
     --space--0: 0px;
     --space--px: 1px;
     --space--0-5: 0.125rem;
@@ -185,6 +192,15 @@ export const preamble = css`
       0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --box-shadow--2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     --box-shadow--inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    --z-index--auto: auto;
+    --z-index---1: -1;
+    --z-index--0: 0;
+    --z-index--10: 10;
+    --z-index--20: 20;
+    --z-index--30: 30;
+    --z-index--40: 40;
+    --z-index--50: 50;
 
     --blur--none: 0px;
     --blur--sm: 4px;
