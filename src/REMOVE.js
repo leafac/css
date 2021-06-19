@@ -106,17 +106,6 @@
     min: "min-content",
     max: "max-content",
   },
-  objectPosition: {
-    bottom: "bottom",
-    center: "center",
-    left: "left",
-    "left-bottom": "left bottom",
-    "left-top": "left top",
-    right: "right",
-    "right-bottom": "right bottom",
-    "right-top": "right top",
-    top: "top",
-  },
   opacity: {
     0: "0",
     5: "0.05",
@@ -156,14 +145,6 @@
     white: ["2px dotted white", "2px"],
     black: ["2px dotted black", "2px"],
   },
-  padding: (theme) => theme("spacing"),
-  placeholderColor: (theme) => theme("colors"),
-  placeholderOpacity: (theme) => theme("opacity"),
-  ringColor: (theme) => ({
-    DEFAULT: theme("colors.blue.500", "#3b82f6"),
-    ...theme("colors"),
-  }),
-  ringOffsetColor: (theme) => theme("colors"),
   ringOffsetWidth: {
     0: "0px",
     1: "1px",
