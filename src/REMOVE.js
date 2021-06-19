@@ -219,25 +219,10 @@
     6: "6deg",
     12: "12deg",
   },
-  space: (theme, { negative }) => ({
-    ...theme("spacing"),
-    ...negative(theme("spacing")),
-  }),
   strokeWidth: {
     0: "0",
     1: "1",
     2: "2",
-  },
-  transformOrigin: {
-    center: "center",
-    top: "top",
-    "top-right": "top right",
-    right: "right",
-    "bottom-right": "bottom right",
-    bottom: "bottom",
-    "bottom-left": "bottom left",
-    left: "left",
-    "top-left": "top left",
   },
   transitionDelay: {
     75: "75ms",
