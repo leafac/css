@@ -4,15 +4,15 @@ export type CSS = string;
 
 export const preamble = css`
   /*
-  https://necolas.github.io/normalize.css/8.0.1/normalize.css
-  https://meyerweb.com/eric/tools/css/reset/
-  https://github.com/twbs/bootstrap/blob/649c2bb0bf326db36cbbf7e72c0541b19749a70e/dist/css/bootstrap-reboot.css
-  https://github.com/sindresorhus/modern-normalize/blob/1fc6b5a86676b7ac8abc62d04d6080f92debc70f/modern-normalize.css
-  https://github.com/suitcss/base/blob/50d5ad1e0d6790eb3df29b705db3684a9909894f/lib/base.css
-  https://github.com/tailwindlabs/tailwindcss/blob/b442c912e2d052ad026fd2e3d31bc450f620a784/src/plugins/css/preflight.css
-  https://github.com/jensimmons/cssremedy/blob/468e31a7eda599eea2003ed7983c190828ffb5fd/css/remedy.css
-  https://github.com/csstools/sanitize.css/tree/776bd4d72654ddb54aa5071b2cd10bb1957f7f97
-  https://unpkg.com/browse/@tailwindcss/forms@0.3.2/dist/forms.css
+    https://necolas.github.io/normalize.css/8.0.1/normalize.css
+    https://meyerweb.com/eric/tools/css/reset/
+    https://github.com/twbs/bootstrap/blob/649c2bb0bf326db36cbbf7e72c0541b19749a70e/dist/css/bootstrap-reboot.css
+    https://github.com/sindresorhus/modern-normalize/blob/1fc6b5a86676b7ac8abc62d04d6080f92debc70f/modern-normalize.css
+    https://github.com/suitcss/base/blob/50d5ad1e0d6790eb3df29b705db3684a9909894f/lib/base.css
+    https://github.com/tailwindlabs/tailwindcss/blob/b442c912e2d052ad026fd2e3d31bc450f620a784/src/plugins/css/preflight.css
+    https://github.com/jensimmons/cssremedy/blob/468e31a7eda599eea2003ed7983c190828ffb5fd/css/remedy.css
+    https://github.com/csstools/sanitize.css/tree/776bd4d72654ddb54aa5071b2cd10bb1957f7f97
+    https://unpkg.com/browse/@tailwindcss/forms@0.3.2/dist/forms.css
   */
 
   *,
@@ -34,9 +34,13 @@ export const preamble = css`
     cursor: inherit;
   }
 
+  [hidden] {
+    display: none !important;
+  }
+
   /*
-  https://github.com/tailwindlabs/tailwindcss/blob/1d72dc269956bbdac96c33172bddf831b4f682ec/stubs/defaultConfig.stub.js
-  https://github.com/tailwindlabs/tailwindcss/blob/1d72dc269956bbdac96c33172bddf831b4f682ec/colors.js
+    https://github.com/tailwindlabs/tailwindcss/blob/1d72dc269956bbdac96c33172bddf831b4f682ec/stubs/defaultConfig.stub.js
+    https://github.com/tailwindlabs/tailwindcss/blob/1d72dc269956bbdac96c33172bddf831b4f682ec/colors.js
   */
   :root {
     --font-family--sans-serif: ui-sans-serif, system-ui, -apple-system,
@@ -499,5 +503,25 @@ export const preamble = css`
     --color--rose--700: #be123c;
     --color--rose--800: #9f1239;
     --color--rose--900: #881337;
+  }
+
+  /*
+    https://github.com/twbs/bootstrap/blob/7d9adb702d96f9eb4706afb12cd73c9654979575/scss/mixins/_visually-hidden.scss
+    https://tailwindcss.com/docs/screen-readers
+    https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/
+    https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
+    https://github.com/twbs/bootstrap/issues/25686
+    https://accessibility.18f.gov/hidden-content/
+  */
+  .visually-hidden:not(:focus):not(:focus-within):not(:active) {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    margin: -1px;
+    position: absolute;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 `;
