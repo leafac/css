@@ -154,6 +154,7 @@ export const preamble = css`
     --space---72: -18rem;
     --space---80: -20rem;
     --space---96: -24rem;
+    --space--auto: auto;
 
     --border-width--0: 0px;
     --border-width--1: 1px;
