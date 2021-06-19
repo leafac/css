@@ -39,6 +39,52 @@ export const preamble = css`
   https://github.com/tailwindlabs/tailwindcss/blob/1d72dc269956bbdac96c33172bddf831b4f682ec/colors.js
   */
   :root {
+    --font-family--sans-serif: ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family--serif: ui-serif, Georgia, Cambria, "Times New Roman", Times,
+      serif;
+    --font-family--monospace: ui-monospace, SFMono-Regular, Menlo, Monaco,
+      Consolas, "Liberation Mono", "Courier New", monospace;
+
+    --font-size--xs: 0.75rem;
+    --line-height--xs: 1rem;
+    --font-size--sm: 0.875rem;
+    --line-height--sm: 1.25rem;
+    --font-size--base: 1rem;
+    --line-height--base: 1.5rem;
+    --font-size--lg: 1.125rem;
+    --line-height--lg: 1.75rem;
+    --font-size--xl: 1.25rem;
+    --line-height--xl: 1.75rem;
+    --font-size--2xl: 1.5rem;
+    --line-height--2xl: 2rem;
+    --font-size--3xl: 1.875rem;
+    --line-height--3xl: 2.25rem;
+    --font-size--4xl: 2.25rem;
+    --line-height--4xl: 2.5rem;
+    --font-size--5xl: 3rem;
+    --line-height--5xl: 1;
+    --font-size--6xl: 3.75rem;
+    --line-height--6xl: 1;
+    --font-size--7xl: 4.5rem;
+    --line-height--7xl: 1;
+    --font-size--8xl: 6rem;
+    --line-height--8xl: 1;
+    --font-size--9xl: 8rem;
+    --line-height--9xl: 1;
+
+    --font-weight--thin: 100;
+    --font-weight--extralight: 200;
+    --font-weight--light: 300;
+    --font-weight--normal: 400;
+    --font-weight--medium: 500;
+    --font-weight--semibold: 600;
+    --font-weight--bold: 700;
+    --font-weight--extrabold: 800;
+    --font-weight--black: 900;
+
     --space--0: 0px;
     --space--px: 1px;
     --space--0-5: 0.125rem;
@@ -108,6 +154,45 @@ export const preamble = css`
     --space---72: -18rem;
     --space---80: -20rem;
     --space---96: -24rem;
+
+    --border-width--0: 0px;
+    --border-width--1: 1px;
+    --border-width--2: 2px;
+    --border-width--4: 4px;
+    --border-width--8: 8px;
+
+    --border-radius--none: 0px;
+    --border-radius--sm: 0.125rem;
+    --border-radius--base: 0.25rem;
+    --border-radius--md: 0.375rem;
+    --border-radius--lg: 0.5rem;
+    --border-radius--xl: 0.75rem;
+    --border-radius--2xl: 1rem;
+    --border-radius--3xl: 1.5rem;
+    --border-radius--full: 9999px;
+    --border-radius--circle: 50%;
+
+    --box-shadow--none: none;
+    --box-shadow--sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --box-shadow--base: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --box-shadow--md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --box-shadow--lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --box-shadow--xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --box-shadow--2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --box-shadow--inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    --blur--none: 0px;
+    --blur--sm: 4px;
+    --blur--base: 8px;
+    --blur--md: 12px;
+    --blur--lg: 16px;
+    --blur--xl: 24px;
+    --blur--2xl: 40px;
+    --blur--3xl: 64px;
 
     --animation--none: none;
     --animation--spin: spin 1s linear infinite;
