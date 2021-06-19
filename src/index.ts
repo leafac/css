@@ -96,6 +96,7 @@ export const preamble = css`
     --letter-spacing--wider: 0.05em;
     --letter-spacing--widest: 0.1em;
 
+    --space--auto: auto;
     --space--0: 0px;
     --space--px: 1px;
     --space--0-5: 0.125rem;
@@ -165,7 +166,6 @@ export const preamble = css`
     --space---72: -18rem;
     --space---80: -20rem;
     --space---96: -24rem;
-    --space--auto: auto;
 
     --border-width--0: 0px;
     --border-width--1: 1px;
@@ -214,6 +214,38 @@ export const preamble = css`
     --blur--xl: 24px;
     --blur--2xl: 40px;
     --blur--3xl: 64px;
+
+    --brightness--0: 0;
+    --brightness--50: 0.5;
+    --brightness--75: 0.75;
+    --brightness--90: 0.9;
+    --brightness--95: 0.95;
+    --brightness--100: 1;
+    --brightness--105: 1.05;
+    --brightness--110: 1.1;
+    --brightness--125: 1.25;
+    --brightness--150: 1.5;
+    --brightness--200: 2;
+
+    --contrast--0: 0;
+    --contrast--50: 0.5;
+    --contrast--75: 0.75;
+    --contrast--100: 1;
+    --contrast--125: 1.25;
+    --contrast--150: 1.5;
+    --contrast--200: 2;
+
+    --drop-shadow--none: 0 0 #0000;
+    --drop-shadow--sm: 0 1px 1px rgba(0, 0, 0, 0.05);
+    --drop-shadow--base: 0 1px 2px rgba(0, 0, 0, 0.1),
+      0 1px 1px rgba(0, 0, 0, 0.06);
+    --drop-shadow--md: 0 4px 3px rgba(0, 0, 0, 0.07),
+      0 2px 2px rgba(0, 0, 0, 0.06);
+    --drop-shadow--lg: 0 10px 8px rgba(0, 0, 0, 0.04),
+      0 4px 3px rgba(0, 0, 0, 0.1);
+    --drop-shadow--xl: 0 20px 13px rgba(0, 0, 0, 0.03),
+      0 8px 5px rgba(0, 0, 0, 0.08);
+    --drop-shadow--2xl: 0 25px 25px rgba(0, 0, 0, 0.15);
 
     --animation--none: none;
     --animation--spin: spin 1s linear infinite;
