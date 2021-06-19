@@ -1,6 +1,16 @@
 <!--
 
 
+screens: don’t use a set of breakpoints, instead look at the interface, determine when it isn’t working anymore, and add a breakpoint there (also, CSS custom properties don’t work in media queries)
+
+approach:
+reset
+design system
+global styles (for example, font)
+components for things like form inputs and buttons
+inline styles everywhere else
+
+
 
 
 

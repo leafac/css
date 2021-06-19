@@ -39,6 +39,86 @@ export const preamble = css`
   https://github.com/tailwindlabs/tailwindcss/blob/1d72dc269956bbdac96c33172bddf831b4f682ec/colors.js
   */
   :root {
+    --space--0: 0px;
+    --space--px: 1px;
+    --space--0-5: 0.125rem;
+    --space--1: 0.25rem;
+    --space--1-5: 0.375rem;
+    --space--2: 0.5rem;
+    --space--2-5: 0.625rem;
+    --space--3: 0.75rem;
+    --space--3-5: 0.875rem;
+    --space--4: 1rem;
+    --space--5: 1.25rem;
+    --space--6: 1.5rem;
+    --space--7: 1.75rem;
+    --space--8: 2rem;
+    --space--9: 2.25rem;
+    --space--10: 2.5rem;
+    --space--11: 2.75rem;
+    --space--12: 3rem;
+    --space--14: 3.5rem;
+    --space--16: 4rem;
+    --space--20: 5rem;
+    --space--24: 6rem;
+    --space--28: 7rem;
+    --space--32: 8rem;
+    --space--36: 9rem;
+    --space--40: 10rem;
+    --space--44: 11rem;
+    --space--48: 12rem;
+    --space--52: 13rem;
+    --space--56: 14rem;
+    --space--60: 15rem;
+    --space--64: 16rem;
+    --space--72: 18rem;
+    --space--80: 20rem;
+    --space--96: 24rem;
+
+    --animation--none: none;
+    --animation--spin: spin 1s linear infinite;
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    --animation--ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    @keyframes ping {
+      75%,
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+    --animation--pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+    --animation--bounce: bounce 1s infinite;
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(-25%);
+        animationtimingfunction: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animationtimingfunction: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+
+    --color--transparent: transparent;
+    --color--current: currentColor;
+
     --color--black: #000000;
     --color--white: #ffffff;
 
