@@ -39,8 +39,8 @@ export const preamble = css`
   https://github.com/tailwindlabs/tailwindcss/blob/1d72dc269956bbdac96c33172bddf831b4f682ec/colors.js
   */
   :root {
-    --color--black: #000;
-    --color--white: #fff;
+    --color--black: #000000;
+    --color--white: #ffffff;
 
     --color--gray--blue--50: #f8fafc;
     --color--gray--blue--100: #f1f5f9;
