@@ -1,5 +1,9 @@
 <!--
 
+trust your eyes
+
+
+
 
 screens: don’t use a set of breakpoints, instead look at the interface, determine when it isn’t working anymore, and add a breakpoint there (also, CSS custom properties don’t work in media queries)
 

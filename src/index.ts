@@ -217,6 +217,10 @@ export const preamble = css`
     --opacity--95: 0.95;
     --opacity--100: 1;
 
+    --order--none: 0;
+    --order--first: -9999;
+    --order--last: 9999;
+
     --z-index--auto: auto;
     --z-index---1: -1;
     --z-index--0: 0;
@@ -244,14 +248,28 @@ export const preamble = css`
     --rotate--90: 90deg;
     --rotate--180: 180deg;
 
-    --blur--none: 0px;
-    --blur--sm: 4px;
-    --blur--base: 8px;
-    --blur--md: 12px;
-    --blur--lg: 16px;
-    --blur--xl: 24px;
-    --blur--2xl: 40px;
-    --blur--3xl: 64px;
+    --scale--0: 0;
+    --scale--50: 0.5;
+    --scale--75: 0.75;
+    --scale--90: 0.9;
+    --scale--95: 0.95;
+    --scale--100: 1;
+    --scale--105: 1.05;
+    --scale--110: 1.1;
+    --scale--125: 1.25;
+    --scale--150: 1.5;
+
+    --skew---12: -12deg;
+    --skew---6: -6deg;
+    --skew---3: -3deg;
+    --skew---2: -2deg;
+    --skew---1: -1deg;
+    --skew--0: 0deg;
+    --skew--1: 1deg;
+    --skew--2: 2deg;
+    --skew--3: 3deg;
+    --skew--6: 6deg;
+    --skew--12: 12deg;
 
     --brightness--0: 0;
     --brightness--50: 0.5;
@@ -272,6 +290,24 @@ export const preamble = css`
     --contrast--125: 1.25;
     --contrast--150: 1.5;
     --contrast--200: 2;
+
+    --saturate--0: 0;
+    --saturate--50: 0.5;
+    --saturate--100: 1;
+    --saturate--150: 1.5;
+    --saturate--200: 2;
+
+    --blur--none: 0px;
+    --blur--sm: 4px;
+    --blur--base: 8px;
+    --blur--md: 12px;
+    --blur--lg: 16px;
+    --blur--xl: 24px;
+    --blur--2xl: 40px;
+    --blur--3xl: 64px;
+
+    --sepia--0: 0;
+    --sepia--base: 100%;
 
     --drop-shadow--none: 0 0 #0000;
     --drop-shadow--sm: 0 1px 1px rgba(0, 0, 0, 0.05);
