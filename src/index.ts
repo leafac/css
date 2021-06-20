@@ -96,6 +96,20 @@ export const preamble = css`
     --letter-spacing--wider: 0.05em;
     --letter-spacing--widest: 0.1em;
 
+    --width--0: 0rem;
+    --width--xs: 20rem;
+    --width--sm: 24rem;
+    --width--md: 28rem;
+    --width--lg: 32rem;
+    --width--xl: 36rem;
+    --width--2xl: 42rem;
+    --width--3xl: 48rem;
+    --width--4xl: 56rem;
+    --width--5xl: 64rem;
+    --width--6xl: 72rem;
+    --width--7xl: 80rem;
+    --width--prose: 65ch;
+
     --space--auto: auto;
     --space---96: -24rem;
     --space---80: -20rem;
