@@ -1,5 +1,17 @@
 <!--
 
+negative spaces
+width
+letter-spacing
+border-radius circle
+opacity
+z-index
+rotate
+scale
+brightness
+transitions
+
+
 trust your eyes
 
 

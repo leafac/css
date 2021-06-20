@@ -110,7 +110,6 @@ export const preamble = css`
     --width--7xl: 80rem;
     --width--prose: 65ch;
 
-    --space--auto: auto;
     --space---96: -24rem;
     --space---80: -20rem;
     --space---72: -18rem;
