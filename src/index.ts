@@ -673,3 +673,31 @@ export const preamble = css`
     white-space: nowrap;
   }
 `;
+
+const bodyDOM = JSDOM.fragment(html`<div>$${body}</div>`);
+    const styles = new Map<string, CSS>();
+    const extractStyle = (fragment: ParentNode) => {
+      for (const element of fragment.querySelectorAll("[style]")) {
+        const style = element.getAttribute("style")!;
+        element.removeAttribute("style");
+        const className = `style--${murmurHash2(style)}`;
+        element.classList.add(className);
+        styles.set(className, style);
+      }
+    };
+
+
+
+    [...styles]
+                  .map(
+                    ([className, style]) =>
+                      css`
+                        .${className}.${className}.${className}.${className}.${className}.${className} {
+                          ${style}
+                        }
+                      `
+                  )
+                  .join("")
+
+
+                  bodyDOM.firstElementChild!.innerHTML
