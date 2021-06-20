@@ -201,6 +201,10 @@ export const preamble = css`
     --box-shadow--2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     --box-shadow--inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
 
+    --stroke-width--0: 0;
+    --stroke-width--1: 1;
+    --stroke-width--2: 2;
+
     --opacity--0: 0;
     --opacity--5: 0.05;
     --opacity--10: 0.1;
@@ -320,6 +324,31 @@ export const preamble = css`
     --drop-shadow--xl: 0 20px 13px rgba(0, 0, 0, 0.03),
       0 8px 5px rgba(0, 0, 0, 0.08);
     --drop-shadow--2xl: 0 25px 25px rgba(0, 0, 0, 0.15);
+
+    --transition-property--none: none;
+    --transition-property--all: all;
+    --transition-property--base: background-color, border-color, color, fill,
+      stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    --transition-property--colors: background-color, border-color, color, fill,
+      stroke;
+    --transition-property--opacity: opacity;
+    --transition-property--shadow: box-shadow;
+    --transition-property--transform: transform;
+
+    --transition-duration--75: 75ms;
+    --transition-duration--100: 100ms;
+    --transition-duration--150: 150ms;
+    --transition-duration--200: 200ms;
+    --transition-duration--300: 300ms;
+    --transition-duration--500: 500ms;
+    --transition-duration--700: 700ms;
+    --transition-duration--1000: 1000ms;
+
+    --transition-timing-function--base: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-timing-function--linear: linear;
+    --transition-timing-function--in: cubic-bezier(0.4, 0, 1, 1);
+    --transition-timing-function--out: cubic-bezier(0, 0, 0.2, 1);
+    --transition-timing-function--in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
     --animation--none: none;
     --animation--spin: spin 1s linear infinite;
