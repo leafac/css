@@ -184,6 +184,10 @@ export const preamble = css`
     --border-radius--full: 9999px;
     --border-radius--circle: 50%;
 
+    --outline--none: 2px solid transparent;
+    --outline--white: 2px dotted white;
+    --outline--black: 2px dotted black;
+
     --box-shadow--none: none;
     --box-shadow--sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --box-shadow--base: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
@@ -196,6 +200,22 @@ export const preamble = css`
       0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --box-shadow--2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     --box-shadow--inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    --opacity--0: 0;
+    --opacity--5: 0.05;
+    --opacity--10: 0.1;
+    --opacity--20: 0.2;
+    --opacity--25: 0.25;
+    --opacity--30: 0.3;
+    --opacity--40: 0.4;
+    --opacity--50: 0.5;
+    --opacity--60: 0.6;
+    --opacity--70: 0.7;
+    --opacity--75: 0.75;
+    --opacity--80: 0.8;
+    --opacity--90: 0.9;
+    --opacity--95: 0.95;
+    --opacity--100: 1;
 
     --z-index--auto: auto;
     --z-index---1: -1;
