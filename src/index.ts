@@ -10,6 +10,7 @@ export { css };
 export type CSS = string;
 export function extractInlineCSS<T extends HTML | ParentNode>(
   input: T,
+  options =
   {
     preamble = css`
       /*
