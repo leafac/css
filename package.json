@@ -28,6 +28,7 @@
     "@emotion/hash": "^0.8.0",
     "@leafac/html": "^3.0.0",
     "@types/jsdom": "^16.2.11",
+    "autoprefixer": "^10.2.6",
     "jsdom": "^16.6.0",
     "postcss": "^8.3.5",
     "postcss-nested": "^5.0.5",
