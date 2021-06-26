@@ -10,7 +10,6 @@ export { css };
 export type CSS = string;
 export function extractInlineCSS<T extends HTML | ParentNode>(
   input: T,
-  options =
   {
     preamble = css`
       /*
@@ -689,27 +688,16 @@ export function extractInlineCSS<T extends HTML | ParentNode>(
       }
     `,
     attributesWithHTML = [],
-    classRepetitions = 6,
   }: {
     preamble?: CSS;
     attributesWithHTML?: string[];
-    classRepetitions?: number;
-  }
+  } = {}
 ): { html: T; css: CSS } {
   const inputDOM =
     typeof input === "string"
       ? JSDOM.fragment(html`<div>$${input}</div>`)
       : (input as ParentNode);
   const styles = new Map<string, CSS>();
-  const extractStyle = (fragment: ParentNode) => {
-    for (const element of fragment.querySelectorAll("[style]")) {
-      const style = element.getAttribute("style")!;
-      element.removeAttribute("style");
-      const className = `style--${murmurHash2(style)}`;
-      element.classList.add(className);
-      styles.set(className, style);
-    }
-  };
   extractStyle(inputDOM);
   for (const attributeWithHTML of attributesWithHTML)
     for (const element of inputDOM.querySelectorAll(`[${attributeWithHTML}]`)) {
@@ -722,19 +710,17 @@ export function extractInlineCSS<T extends HTML | ParentNode>(
         attributeWithHTMLDOM.firstElementChild!.innerHTML
       );
     }
-
   return {
-    html:
-      typeof input === "string"
-        ? inputDOM.firstElementChild!.innerHTML
-        : inputDOM,
+    html: (typeof input === "string"
+      ? inputDOM.firstElementChild!.innerHTML
+      : inputDOM) as T,
     css: postcss([postcssNested, autoprefixer]).process(css`
       ${preamble}
       ${[...styles]
         .map(
           ([className, style]) =>
             css`
-              ${`.${className}`.repeat(classRepetitions)} {
+              ${`.${className}`.repeat(6)} {
                 ${style}
               }
             `
@@ -742,4 +728,13 @@ export function extractInlineCSS<T extends HTML | ParentNode>(
         .join("")}
     `).css,
   };
+  function extractStyle(fragment: ParentNode): void {
+    for (const element of fragment.querySelectorAll("[style]")) {
+      const style = element.getAttribute("style")!;
+      element.removeAttribute("style");
+      const className = `style--${murmurHash2(style)}`;
+      element.classList.add(className);
+      styles.set(className, style);
+    }
+  }
 }
