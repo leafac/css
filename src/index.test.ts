@@ -11,7 +11,10 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
         <body>
           <p
             style="${css`
-              background-color: red;
+              background-color: var(--color--red--500);
+              &:hover {
+                background-color: var(--color--red--300);
+              }
 
               @media (max-width: 599px) {
                 margin: 1rem;
@@ -760,17 +763,22 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
               /* INLINE STYLES */
 
               
-                      .style--lp8a44.style--lp8a44.style--lp8a44.style--lp8a44.style--lp8a44.style--lp8a44 {
+                      .style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb {
                         
-                  background-color: red;
+                  background-color: var(--color--red--500);
                 
                       }
+
+              
+                      .style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb:hover {
+                    background-color: var(--color--red--300);
+                  }
 
               
                       @media (max-width: 599px) {
 
               
-                      .style--lp8a44.style--lp8a44.style--lp8a44.style--lp8a44.style--lp8a44.style--lp8a44 {
+                      .style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb {
                     margin: 1rem
                 
                       }
@@ -780,7 +788,7 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
           </style>
         </head>
             <body>
-              <p class=\\"style--lp8a44\\">
+              <p class=\\"style--r45ojb\\">
                 Leandro Facchinetti
               </p>
             
