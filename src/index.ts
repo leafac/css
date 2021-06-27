@@ -706,6 +706,8 @@ export function extractInlineStyles(htmlWithInlineStyles: HTML): HTML {
             white-space: nowrap;
           }
 
+          /* INLINE STYLES */
+
           ${[...styles]
             .map(
               ([className, style]) =>
