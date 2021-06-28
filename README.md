@@ -1,3 +1,5 @@
+# This documentation is a work-in-progress. The library itself is ready for consumption for early adopters.
+
 <h1 align="center">@leafac/css</h1>
 <h3 align="center">Radically Straightforward CSS</h3>
 <p align="center">
