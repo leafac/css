@@ -388,6 +388,17 @@ export function extractInlineStyles(htmlWithInlineStyles: HTML): HTML {
             --transition-duration--700: 700ms;
             --transition-duration--1000: 1000ms;
 
+            @media (prefers-reduced-motion: reduce) {
+              --transition-duration--75: 1ms;
+              --transition-duration--100: 1ms;
+              --transition-duration--150: 1ms;
+              --transition-duration--200: 1ms;
+              --transition-duration--300: 1ms;
+              --transition-duration--500: 1ms;
+              --transition-duration--700: 1ms;
+              --transition-duration--1000: 1ms;
+            }
+
             --transition-timing-function--base: cubic-bezier(0.4, 0, 0.2, 1);
             --transition-timing-function--linear: linear;
             --transition-timing-function--in: cubic-bezier(0.4, 0, 1, 1);

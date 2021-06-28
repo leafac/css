@@ -178,6 +178,11 @@ Becomes:
 
 <!-- Put a code example right away -->
 
+<!-- <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1"
+          /> -->
+
 <!--
 trust your eyes
 
