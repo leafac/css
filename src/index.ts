@@ -376,7 +376,7 @@ export function extractInlineStyles(htmlWithInlineStyles: HTML): HTML {
             --transition-property--colors: background-color, border-color, color,
               fill, stroke;
             --transition-property--opacity: opacity;
-            --transition-property--shadow: box-shadow;
+            --transition-property--box-shadow: box-shadow;
             --transition-property--transform: transform;
 
             --transition-duration--75: 75ms;
