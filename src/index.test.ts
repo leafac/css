@@ -386,7 +386,7 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
                 --transition-property--colors: background-color, border-color, color,
                   fill, stroke;
                 --transition-property--opacity: opacity;
-                --transition-property--shadow: box-shadow;
+                --transition-property--box-shadow: box-shadow;
                 --transition-property--transform: transform;
 
                 --transition-duration--75: 75ms;
@@ -397,6 +397,20 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
                 --transition-duration--500: 500ms;
                 --transition-duration--700: 700ms;
                 --transition-duration--1000: 1000ms;
+              }
+              @media (prefers-reduced-motion: reduce) {
+              :root {
+                  --transition-duration--75: 1ms;
+                  --transition-duration--100: 1ms;
+                  --transition-duration--150: 1ms;
+                  --transition-duration--200: 1ms;
+                  --transition-duration--300: 1ms;
+                  --transition-duration--500: 1ms;
+                  --transition-duration--700: 1ms;
+                  --transition-duration--1000: 1ms;
+              }
+                }
+              :root {
 
                 --transition-timing-function--base: cubic-bezier(0.4, 0, 0.2, 1);
                 --transition-timing-function--linear: linear;
@@ -406,7 +420,7 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
 
                 --animation--none: none;
                 --animation--spin: spin 1s linear infinite;
-              }
+    }
               @-webkit-keyframes spin {
                   from {
                     transform: rotate(0deg);
