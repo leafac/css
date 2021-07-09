@@ -44,6 +44,8 @@ export function extractInlineStyles(htmlWithInlineStyles: HTML): HTML {
             font: inherit;
             text-decoration: inherit;
             text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             color: inherit;
             background-color: transparent;
             box-sizing: border-box;
