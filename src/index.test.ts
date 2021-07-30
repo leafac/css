@@ -94,6 +94,8 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
                 --font-family--monospace: ui-monospace, SFMono-Regular, Menlo,
                   Monaco, Consolas, \\"Liberation Mono\\", \\"Courier New\\", monospace;
 
+                --font-size--2xs: 0.625rem;
+                --line-height--2xs: 0.875rem;
                 --font-size--xs: 0.75rem;
                 --line-height--xs: 1rem;
                 --font-size--sm: 0.875rem;
