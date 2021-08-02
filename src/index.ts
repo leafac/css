@@ -1,4 +1,3 @@
-import css from "tagged-template-noop";
 import { html, HTML } from "@leafac/html";
 import { JSDOM } from "jsdom";
 import murmurHash2 from "@emotion/hash";
@@ -6,8 +5,23 @@ import postcss from "postcss";
 import postcssNested from "postcss-nested";
 import autoprefixer from "autoprefixer";
 
-export { css };
 export type CSS = string;
+
+export function css(
+  inputParts: TemplateStringsArray,
+  ...interpolations: (CSS | CSS[])[]
+): CSS {
+  const outputParts: CSS[] = [];
+  interpolations.push("");
+  for (let index = 0; index < inputParts.length; index++) {
+    outputParts.push(inputParts[index]);
+    const interpolation = interpolations[index];
+    if (Array.isArray(interpolation)) outputParts.push(...interpolation);
+    else outputParts.push(interpolation);
+  }
+  return outputParts.join("");
+}
+
 export function extractInlineStyles(htmlWithInlineStyles: HTML): HTML {
   const dom = new JSDOM(htmlWithInlineStyles);
   const document = dom.window.document;

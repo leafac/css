@@ -19,6 +19,18 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
               @media (max-width: 599px) {
                 margin: 1rem;
               }
+
+              ${css`
+                color: var(--color--blue--200);
+              `}
+
+              ${["blue", "yellow"].map(
+                (color) => css`
+                  .highlight--${color} {
+                    color: var(--color--${color}--200);
+                  }
+                `
+              )}
             `}"
           >
             Leandro Facchinetti
@@ -782,14 +794,15 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
               /* INLINE STYLES */
 
               
-                      .style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb {
+                      .style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167 {
                         
                   background-color: var(--color--red--500);
+                    
                 
                       }
 
               
-                      .style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb:hover {
+                      .style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167:hover {
                     background-color: var(--color--red--300);
                   }
 
@@ -797,17 +810,35 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
                       @media (max-width: 599px) {
 
               
-                      .style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb.style--r45ojb {
+                      .style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167 {
                     margin: 1rem
+                    
                 
                       }
                   }
+
+              
+                      .style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167 {
+
+                  
+                    color: var(--color--blue--200);
+    }
+
+              
+                      .style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167 .highlight--blue {
+                        color: var(--color--blue--200);
+                      }
+
+              
+                      .style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167.style--1ifn167 .highlight--yellow {
+                        color: var(--color--yellow--200);
+                      }
                     
             
           </style>
         </head>
             <body>
-              <p class=\\"style--r45ojb\\">
+              <p class=\\"style--1ifn167\\">
                 Leandro Facchinetti
               </p>
             
