@@ -48,6 +48,7 @@ export function extractInlineStyles(htmlWithInlineStyles: HTML): HTML {
             -moz-osx-font-smoothing: grayscale;
             color: inherit;
             background-color: transparent;
+            opacity: 1;
             box-sizing: border-box;
             padding: 0;
             border: 0;

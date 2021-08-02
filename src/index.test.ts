@@ -56,6 +56,7 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
                 -moz-osx-font-smoothing: grayscale;
                 color: inherit;
                 background-color: transparent;
+                opacity: 1;
                 box-sizing: border-box;
                 padding: 0;
                 border: 0;
