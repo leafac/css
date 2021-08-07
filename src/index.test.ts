@@ -778,7 +778,8 @@ test("Inline styles are extracted into a ‘<style>’ tag in ‘<head>’, with
                 https://github.com/twbs/bootstrap/issues/25686
                 https://accessibility.18f.gov/hidden-content/
               */
-              .visually-hidden:not(:focus):not(:focus-within):not(:active) {
+              .visually-hidden,
+              .visually-hidden--interactive:not(:focus):not(:focus-within):not(:active) {
                 width: 1px;
                 height: 1px;
                 padding: 0;
