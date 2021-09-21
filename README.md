@@ -172,6 +172,45 @@ Becomes:
 
 @leafac/css is a preprocessor that does exactly this. But more importantly, @leafac/css is an architectural statement that this is how we should be writing our styles.
 
+<!-- Htmx
+style -> data-style ??? -->
+
+<!-- * My approach to css & ondomcontentloaded is just object oriented programming -->
+
+<!-- 
+
+
+
+- [ ] Reason why my css strategy is good: no !importantts to overwrite with js
+    - [ ] Why I like Tailwind: Principle of locality; avoid premature optimization
+    - [ ] What I don’t like: Learning curve; weird build system
+    - [ ] Oh, but my approach requires you to process the HTML; well Tailwind uses Purge, which has teh same requirement…
+    - [ ] You’re only loading the css you need for that page
+    - [ ] https://youtu.be/J_7_mnFSLDg?t=1695 DUDE’S COPYING THE HTML TO CHANGE INLINE STYLES!! OH NOES!
+
+
+
+- [ ] It reflects the fullstack nature of the developer
+- [ ] Separation of concerns, but feature-wide instead of presentation/behavior/markup
+- [ ] References:
+    - [ ] https://www.npmjs.com/package/csjs
+    - [ ] https://www.npmjs.com/package/radium
+
+
+
+    https://vanilla-extract.style
+    Type checking & autocomplete. I’m totally stealing that idea! Instead of writing:
+
+color: var(--color--green--200);
+
+You’ll write something like:
+
+color: ${css.color.green[200]};
+
+
+xxhash
+ -->
+
 <!-- What else is there to love about Tailwind? The docs (including the book), and the design system -->
 
 <!-- And sometimes in those situations extracting CSS components isn’t the right level of abstraction, because the component also has opinions on the HTML. React, for example, but we can do it much more simply. -->
