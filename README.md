@@ -1,3 +1,9 @@
+<!--
+- Update to Tailwind 3
+- Use explicit names like `large` instead of `lg`
+- Normalize spaces with .replace(/\s/+, " "). This should reduce the number of redundant classes.
+-->
+
 # This documentation is a work-in-progress. The library itself is ready for consumption for early adopters.
 
 <h1 align="center">@leafac/css</h1>
@@ -209,6 +215,12 @@ color: ${css.color.green[200]};
 
 
 xxhash
+
+https://xstyled.dev
+
+https://github.com/bryc/code/tree/master/jshash/hashes
+
+https://linaria.dev/
  -->
 
 <!-- What else is there to love about Tailwind? The docs (including the book), and the design system -->
