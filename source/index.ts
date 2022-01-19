@@ -4,6 +4,39 @@ import postcssNested from "postcss-nested";
 import autoprefixer from "autoprefixer";
 
 export type CSS = string;
+export type ClassName = string;
+
+export function localCSS(): { (css_: CSS): ClassName; toString(): CSS } {
+  const classNames = new Set<ClassName>();
+  const adder = (css: CSS): ClassName => {
+    const className = cssClassName(css);
+    classNames.add(className);
+    return className;
+  };
+  adder.toString = () =>
+    [...classNames].map((className) => processedCSS.get(className)).join("");
+  return adder;
+}
+
+export function cssClassName(css_: CSS): ClassName {
+  const className = `css--${murmurHash2(css_)}`;
+  if (!processedCSS.has(className))
+    processedCSS.set(
+      className,
+      processCSS(
+        css`
+          ${`.${className}`.repeat(6)} {
+            ${css_}
+          }
+        `
+      )
+    );
+  return className;
+}
+
+export function processCSS(css: CSS): CSS {
+  return postcssProcessor.process(css).css;
+}
 
 export function css(
   inputParts: TemplateStringsArray,
@@ -20,27 +53,10 @@ export function css(
   return outputParts.join("");
 }
 
+export const processedCSS = new Map<ClassName, CSS>();
 export const postcssProcessor = postcss([postcssNested, autoprefixer]);
 
-export function processCSS(styles: CSS): CSS {
-  return postcssProcessor.process(styles).css;
-}
-
-const processedStyles = new Map<CSS, CSS>();
-
-export function style(styles: CSS): string {
-  const className = `style--${murmurHash2(style)}`;
-
-  return className;
-}
-
-// `
-//                   ${`.${className}`.repeat(6)} {
-//                     ${style}
-//                   }
-//                 `
-
-export const globalStyles = css`
+export const globalCSS = css`
   /* RESET */
 
   /*
