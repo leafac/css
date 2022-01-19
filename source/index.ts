@@ -1,4 +1,7 @@
-import murmurHash2 from "@emotion/hash";
+import murmurHash2Import from "@emotion/hash";
+// FIXME: There’s something weird with this import.
+const murmurHash2 = (murmurHash2Import as any)
+  .default as typeof murmurHash2Import;
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
 import autoprefixer from "autoprefixer";
