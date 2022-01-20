@@ -9,7 +9,7 @@ import autoprefixer from "autoprefixer";
 export type CSS = string;
 export type ClassName = string;
 
-export function localCSS(): { (css_: CSS): ClassName; toString(): CSS } {
+export function localCSS(): { (css: CSS): ClassName; toString(): CSS } {
   const classNames = new Set<ClassName>();
   const adder = (css: CSS): ClassName => {
     const className = cssClassName(css);
