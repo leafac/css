@@ -17,7 +17,10 @@ export function localCSS(): { (css: CSS): ClassName; toString(): CSS } {
     return className;
   };
   adder.toString = () =>
-    [...classNames].map((className) => processedCSS.get(className)).join("");
+    [...classNames]
+      .reverse()
+      .map((className) => processedCSS.get(className))
+      .join("");
   return adder;
 }
 

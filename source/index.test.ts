@@ -27,8 +27,21 @@ test("localCSS()", () => {
   `;
   expect(pageLocalCSS(exampleCSS)).toMatchInlineSnapshot(`"css--1ci2ui7"`);
   expect(pageLocalCSS(exampleCSS)).toMatchInlineSnapshot(`"css--1ci2ui7"`);
+  expect(
+    pageLocalCSS(
+      css`
+        font-family: sans-serif;
+      `
+    )
+  ).toMatchInlineSnapshot(`"css--c2qlb4"`);
   expect(`${pageLocalCSS}`).toMatchInlineSnapshot(`
     "
+              .css--c2qlb4.css--c2qlb4.css--c2qlb4.css--c2qlb4.css--c2qlb4.css--c2qlb4 {
+                
+            font-family: sans-serif;
+          
+              }
+            
               .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7 {
                 
         background-color: var(--color--gray--medium--50);
