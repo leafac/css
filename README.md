@@ -1,4 +1,5 @@
 <!--
+- Extract the notion of hashing the global CSS for cache busting into library.
 - Update to Tailwind 3
 - Use explicit names like `large` instead of `lg`
 - Normalize spaces with .replace(/\s/+, " "). This should reduce the number of redundant classes.
