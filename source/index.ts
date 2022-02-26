@@ -847,6 +847,8 @@ if (process.env.PREPARE === "leafac--css")
         border: 0;
         margin: -1px;
         position: absolute;
+        top: -100px;
+        left: -100px;
         overflow: hidden;
         clip-path: inset(50%);
         white-space: nowrap;
