@@ -7,6 +7,7 @@ const murmurHash2 = (murmurHash2Import as any)
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
 import autoprefixer from "autoprefixer";
+import { html } from "@leafac/html";
 import assert from "node:assert/strict";
 
 export type CSS = string;
@@ -23,10 +24,14 @@ export function localCSS(): { (css: CSS): ClassName; toString(): CSS } {
     return className;
   };
   adder.toString = () =>
-    [...classNames]
-      .reverse()
-      .map((className) => processedCSS.get(className))
-      .join("");
+    html`
+      <style class="local-css">
+        $${[...classNames]
+          .reverse()
+          .map((className) => processedCSS.get(className))
+          .join("")}
+      </style>
+    `;
   return adder;
 }
 if (process.env.TEST === "leafac--css") {
@@ -58,17 +63,20 @@ if (process.env.TEST === "leafac--css") {
   assert.equal(
     pageLocalCSS(
       css`
-        font-family: sans-serif;
+        font-family: "Public Sans";
       `
     ),
-    "css--c2qlb4"
+    "css--l5tnu4"
   );
   assert.equal(
-    `${pageLocalCSS}`,
-    `
-          .css--c2qlb4.css--c2qlb4.css--c2qlb4.css--c2qlb4.css--c2qlb4.css--c2qlb4 {
+    html`$${pageLocalCSS.toString()}`.trim(),
+    // prettier-ignore
+    html`
+      <style class="local-css">
+        
+          .css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4 {
             
-        font-family: sans-serif;
+        font-family: "Public Sans";
       
           }
         
@@ -101,7 +109,9 @@ if (process.env.TEST === "leafac--css") {
     .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7 .highlight--yellow {
           color: var(--color--yellow--200);
         }
-        `
+        
+      </style>
+    `.trim()
   );
 }
 
