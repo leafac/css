@@ -25,7 +25,7 @@ export function localCSS(): { (css: CSS): ClassName; toString(): CSS } {
   };
   adder.toString = () =>
     html`
-      <style class="local-css">
+      <style key="local-css">
         $${[...classNames]
           .reverse()
           .map((className) => processedCSS.get(className))
@@ -72,7 +72,7 @@ if (process.env.TEST === "leafac--css") {
     html`$${pageLocalCSS.toString()}`.trim(),
     // prettier-ignore
     html`
-      <style class="local-css">
+      <style key="local-css">
         
           .css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4 {
             
