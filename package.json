@@ -1,6 +1,6 @@
 {
   "name": "@leafac/css",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Radically Straightforward CSS",
   "exports": "./distribution/index.js",
   "types": "./distribution/index.d.ts",
