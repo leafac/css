@@ -25,23 +25,24 @@ export function processCSS(css: CSS): CSS {
 }
 
 export function localCSS(): { (css: CSS): string; toString(): CSS } {
-  let output = css``;
+  const output = new Set<CSS>();
   const function_ = (css_: CSS): string => {
     const key = murmurHash2(css_);
-    output =
+    output.add(
       processCSS(
         css`
           ${`[css="${key}"]`.repeat(6)} {
             ${css_}
           }
         `
-      ) + output;
+      )
+    );
     return key;
   };
   function_.toString = () =>
     html`
       <style key="local-css">
-        $${output}
+        $${[...output].reverse()}
       </style>
     `;
   return function_;
@@ -88,29 +89,6 @@ if (process.env.TEST === "leafac--css") {
         <style key="local-css">
           [css="l5tnu4"][css="l5tnu4"][css="l5tnu4"][css="l5tnu4"][css="l5tnu4"][css="l5tnu4"] {
             font-family: "Public Sans";
-          }
-
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
-            background-color: var(--color--gray--medium--50);
-          }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]:hover {
-            background-color: var(--color--gray--medium--900);
-          }
-          @media (max-width: 599px) {
-            [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
-              margin: var(--space--1);
-            }
-          }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
-            color: var(--color--gray--medium--700);
-          }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
-            .highlight--blue {
-            color: var(--color--blue--200);
-          }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
-            .highlight--yellow {
-            color: var(--color--yellow--200);
           }
 
           [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
