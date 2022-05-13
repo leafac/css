@@ -25,55 +25,66 @@ export function processCSS(css: CSS): CSS {
 }
 
 export function localCSS(): { (css: CSS): string; toString(): CSS } {
-  const output = new Set<CSS>();
-  const function_ = (css_: CSS): string => {
+  const localCSSParts = new Map<string, CSS>();
+  const addLocalCSSPart = (css_: CSS): string => {
     const key = murmurHash2(css_);
-    output.add(
-      processCSS(
-        css`
-          ${`[css="${key}"]`.repeat(6)} {
-            ${css_}
-          }
-        `
-      )
-    );
+    if (!localCSSParts.has(key))
+      localCSSParts.set(
+        key,
+        processCSS(
+          css`
+            ${`[css="${key}"]`.repeat(6)} {
+              ${css_}
+            }
+          `
+        )
+      );
     return key;
   };
-  function_.toString = () =>
+  addLocalCSSPart.toString = () =>
     html`
       <style key="local-css">
-        $${[...output].reverse()}
+        $${[...localCSSParts.values()].reverse()}
       </style>
     `;
-  return function_;
+  return addLocalCSSPart;
 }
 if (process.env.TEST === "leafac--css") {
   const prettier = await import("prettier");
   const pageLocalCSS = localCSS();
-  const exampleCSS = css`
-    background-color: var(--color--gray--medium--50);
-    &:hover {
-      background-color: var(--color--gray--medium--900);
-    }
+  assert.equal(
+    pageLocalCSS(css`
+      background-color: var(--color--gray--medium--50);
+      &:hover {
+        background-color: var(--color--gray--medium--900);
+      }
 
-    @media (max-width: 599px) {
-      margin: var(--space--1);
-    }
+      @media (max-width: 599px) {
+        margin: var(--space--1);
+      }
 
-    ${css`
-      color: var(--color--gray--medium--700);
-    `}
+      ${css`
+        color: var(--color--gray--medium--700);
+      `}
 
-    ${["blue", "yellow"].map(
-      (color) => css`
-        .highlight--${color} {
-          color: var(--color--${color}--200);
-        }
+      ${["blue", "yellow"].map(
+        (color) => css`
+          .highlight--${color} {
+            color: var(--color--${color}--200);
+          }
+        `
+      )}
+    `),
+    "1qpnq7t"
+  );
+  assert.equal(
+    pageLocalCSS(
+      css`
+        font-family: "Public Sans";
       `
-    )}
-  `;
-  assert.equal(pageLocalCSS(exampleCSS), "1ci2ui7");
-  assert.equal(pageLocalCSS(exampleCSS), "1ci2ui7");
+    ),
+    "l5tnu4"
+  );
   assert.equal(
     pageLocalCSS(
       css`
@@ -91,25 +102,25 @@ if (process.env.TEST === "leafac--css") {
             font-family: "Public Sans";
           }
 
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+          [css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"] {
             background-color: var(--color--gray--medium--50);
           }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]:hover {
+          [css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"]:hover {
             background-color: var(--color--gray--medium--900);
           }
           @media (max-width: 599px) {
-            [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+            [css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"] {
               margin: var(--space--1);
             }
           }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+          [css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"] {
             color: var(--color--gray--medium--700);
           }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
+          [css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"]
             .highlight--blue {
             color: var(--color--blue--200);
           }
-          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
+          [css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"][css="1qpnq7t"]
             .highlight--yellow {
             color: var(--color--yellow--200);
           }
