@@ -24,12 +24,12 @@ export function processCSS(css: CSS): CSS {
   return processedCSS;
 }
 
-export function localCSS(): { (css: CSS): string; toString(): CSS } {
-  const localCSSParts = new Map<string, CSS>();
-  const addLocalCSSPart = (css_: CSS): string => {
+export function localCSS(): { (css_: CSS): string; toString(): CSS } {
+  const parts = new Map<string, CSS>();
+  const addPart = (css_: CSS): string => {
     const key = murmurHash2(css_);
-    if (!localCSSParts.has(key))
-      localCSSParts.set(
+    if (!parts.has(key))
+      parts.set(
         key,
         processCSS(
           css`
@@ -41,13 +41,13 @@ export function localCSS(): { (css: CSS): string; toString(): CSS } {
       );
     return key;
   };
-  addLocalCSSPart.toString = () =>
+  addPart.toString = () =>
     html`
       <style key="local-css">
-        $${[...localCSSParts.values()].reverse()}
+        $${[...parts.values()].reverse()}
       </style>
     `;
-  return addLocalCSSPart;
+  return addPart;
 }
 if (process.env.TEST === "leafac--css") {
   const prettier = await import("prettier");
