@@ -11,35 +11,34 @@ import { html } from "@leafac/html";
 import assert from "node:assert/strict";
 
 export type CSS = string;
-export type ClassName = string;
 
-export const processedCSS = new Map<ClassName, CSS>();
+export const processedCSS = new Map<string, CSS>();
 export const postcssProcessor = postcss([postcssNested, autoprefixer]);
 
-export function localCSS(): { (css: CSS): ClassName; toString(): CSS } {
-  const classNames = new Set<ClassName>();
-  const adder = (css_: CSS): ClassName => {
-    const className = `css--${murmurHash2(css_)}`;
-    if (!processedCSS.has(className))
+export function localCSS(): { (css: CSS): string; toString(): CSS } {
+  const keys = new Set<string>();
+  const adder = (css_: CSS): string => {
+    const key = murmurHash2(css_);
+    if (!processedCSS.has(key))
       processedCSS.set(
-        className,
+        key,
         processCSS(
           css`
-            ${`.${className}`.repeat(6)} {
+            ${`[css="${key}"]`.repeat(6)} {
               ${css_}
             }
           `
         )
       );
-    classNames.add(className);
-    return className;
+    keys.add(key);
+    return key;
   };
   adder.toString = () =>
     html`
       <style key="local-css">
-        $${[...classNames]
+        $${[...keys]
           .reverse()
-          .map((className) => processedCSS.get(className))
+          .map((key) => processedCSS.get(key))
           .join("")}
       </style>
     `;
