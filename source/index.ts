@@ -18,8 +18,19 @@ export const postcssProcessor = postcss([postcssNested, autoprefixer]);
 
 export function localCSS(): { (css: CSS): ClassName; toString(): CSS } {
   const classNames = new Set<ClassName>();
-  const adder = (css: CSS): ClassName => {
-    const className = cssClassName(css);
+  const adder = (css_: CSS): ClassName => {
+    const className = `css--${murmurHash2(css_)}`;
+    if (!processedCSS.has(className))
+      processedCSS.set(
+        className,
+        processCSS(
+          css`
+            ${`.${className}`.repeat(6)} {
+              ${css_}
+            }
+          `
+        )
+      );
     classNames.add(className);
     return className;
   };
@@ -113,22 +124,6 @@ if (process.env.TEST === "leafac--css") {
       </style>
     `.trim()
   );
-}
-
-export function cssClassName(css_: CSS): ClassName {
-  const className = `css--${murmurHash2(css_)}`;
-  if (!processedCSS.has(className))
-    processedCSS.set(
-      className,
-      processCSS(
-        css`
-          ${`.${className}`.repeat(6)} {
-            ${css_}
-          }
-        `
-      )
-    );
-  return className;
 }
 
 export function processCSS(css: CSS): CSS {
