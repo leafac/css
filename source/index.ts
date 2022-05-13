@@ -12,39 +12,42 @@ import assert from "node:assert/strict";
 
 export type CSS = string;
 
-export const processedCSS = new Map<string, CSS>();
 export const postcssProcessor = postcss([postcssNested, autoprefixer]);
+export const processedCSSCache = new Map<CSS, CSS>();
+
+export function processCSS(css: CSS): CSS {
+  let processedCSS = processedCSSCache.get(css);
+  if (processedCSS === undefined) {
+    processedCSS = postcssProcessor.process(css).css;
+    processedCSSCache.set(css, processedCSS);
+  }
+  return processedCSS;
+}
 
 export function localCSS(): { (css: CSS): string; toString(): CSS } {
-  const keys = new Set<string>();
-  const adder = (css_: CSS): string => {
+  let output = css``;
+  const function_ = (css_: CSS): string => {
     const key = murmurHash2(css_);
-    if (!processedCSS.has(key))
-      processedCSS.set(
-        key,
-        processCSS(
-          css`
-            ${`[css="${key}"]`.repeat(6)} {
-              ${css_}
-            }
-          `
-        )
-      );
-    keys.add(key);
+    output =
+      processCSS(
+        css`
+          ${`[css="${key}"]`.repeat(6)} {
+            ${css_}
+          }
+        `
+      ) + output;
     return key;
   };
-  adder.toString = () =>
+  function_.toString = () =>
     html`
       <style key="local-css">
-        $${[...keys]
-          .reverse()
-          .map((key) => processedCSS.get(key))
-          .join("")}
+        $${output}
       </style>
     `;
-  return adder;
+  return function_;
 }
 if (process.env.TEST === "leafac--css") {
+  const prettier = await import("prettier");
   const pageLocalCSS = localCSS();
   const exampleCSS = css`
     background-color: var(--color--gray--medium--50);
@@ -68,65 +71,75 @@ if (process.env.TEST === "leafac--css") {
       `
     )}
   `;
-  assert.equal(pageLocalCSS(exampleCSS), "css--1ci2ui7");
-  assert.equal(pageLocalCSS(exampleCSS), "css--1ci2ui7");
+  assert.equal(pageLocalCSS(exampleCSS), "1ci2ui7");
+  assert.equal(pageLocalCSS(exampleCSS), "1ci2ui7");
   assert.equal(
     pageLocalCSS(
       css`
         font-family: "Public Sans";
       `
     ),
-    "css--l5tnu4"
+    "l5tnu4"
   );
   assert.equal(
-    html`$${pageLocalCSS.toString()}`.trim(),
-    // prettier-ignore
-    html`
-      <style key="local-css">
-        
-          .css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4.css--l5tnu4 {
-            
-        font-family: "Public Sans";
-      
+    prettier.format(html`$${pageLocalCSS.toString()}`, { parser: "html" }),
+    prettier.format(
+      html`
+        <style key="local-css">
+          [css="l5tnu4"][css="l5tnu4"][css="l5tnu4"][css="l5tnu4"][css="l5tnu4"][css="l5tnu4"] {
+            font-family: "Public Sans";
           }
-        
-          .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7 {
-            
-    background-color: var(--color--gray--medium--50);
-      
-  
-          }
-    .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7:hover {
-      background-color: var(--color--gray--medium--900);
-    }
-    @media (max-width: 599px) {
-          .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7 {
-      margin: var(--space--1)
-      
-  
-          }
-    }
-    .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7 {
 
-    
-      color: var(--color--gray--medium--700);
-      
-  
-}
-    .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7 .highlight--blue {
-          color: var(--color--blue--200);
-        }
-    .css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7.css--1ci2ui7 .highlight--yellow {
-          color: var(--color--yellow--200);
-        }
-        
-      </style>
-    `.trim()
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+            background-color: var(--color--gray--medium--50);
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]:hover {
+            background-color: var(--color--gray--medium--900);
+          }
+          @media (max-width: 599px) {
+            [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+              margin: var(--space--1);
+            }
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+            color: var(--color--gray--medium--700);
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
+            .highlight--blue {
+            color: var(--color--blue--200);
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
+            .highlight--yellow {
+            color: var(--color--yellow--200);
+          }
+
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+            background-color: var(--color--gray--medium--50);
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]:hover {
+            background-color: var(--color--gray--medium--900);
+          }
+          @media (max-width: 599px) {
+            [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+              margin: var(--space--1);
+            }
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"] {
+            color: var(--color--gray--medium--700);
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
+            .highlight--blue {
+            color: var(--color--blue--200);
+          }
+          [css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"][css="1ci2ui7"]
+            .highlight--yellow {
+            color: var(--color--yellow--200);
+          }
+        </style>
+      `,
+      { parser: "html" }
+    )
   );
-}
-
-export function processCSS(css: CSS): CSS {
-  return postcssProcessor.process(css).css;
 }
 
 export function css(
