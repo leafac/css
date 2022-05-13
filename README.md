@@ -1,8 +1,8 @@
 <!--
-- Extract the notion of hashing the global CSS for cache busting into library.
 - Update to Tailwind 3
 - Use explicit names like `large` instead of `lg`
 - Normalize spaces with .replace(/\s/+, " "). This should reduce the number of redundant classes.
+- Document: Don’t use #ids, because of specificity (use `key=""`s instead, for compatibility with @leafac/javascript)
 -->
 
 # This documentation is a work-in-progress. The library itself is ready for consumption for early adopters.
