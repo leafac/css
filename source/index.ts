@@ -27,19 +27,19 @@ export function processCSS(css: CSS): CSS {
 export function localCSS(): { (css_: CSS): string; toString(): CSS } {
   const parts = new Map<string, CSS>();
   const addPart = (css_: CSS): string => {
-    const key = murmurHash2(css_);
-    if (!parts.has(key))
+    const attribute = `css="${murmurHash2(css_)}"`;
+    if (!parts.has(attribute))
       parts.set(
-        key,
+        attribute,
         processCSS(
           css`
-            ${`[css="${key}"]`.repeat(6)} {
+            ${`[${attribute}]`.repeat(6)} {
               ${css_}
             }
           `
         )
       );
-    return key;
+    return attribute;
   };
   addPart.toString = () =>
     html`
@@ -51,9 +51,9 @@ export function localCSS(): { (css_: CSS): string; toString(): CSS } {
 }
 if (process.env.TEST === "leafac--css") {
   const prettier = await import("prettier");
-  const pageLocalCSS = localCSS();
+  const pageCSS = localCSS();
   assert.equal(
-    pageLocalCSS(css`
+    pageCSS(css`
       background-color: var(--color--gray--medium--50);
       &:hover {
         background-color: var(--color--gray--medium--900);
@@ -75,26 +75,26 @@ if (process.env.TEST === "leafac--css") {
         `
       )}
     `),
-    "1qpnq7t"
+    `css="1qpnq7t"`
   );
   assert.equal(
-    pageLocalCSS(
+    pageCSS(
       css`
         font-family: "Public Sans";
       `
     ),
-    "l5tnu4"
+    `css="l5tnu4"`
   );
   assert.equal(
-    pageLocalCSS(
+    pageCSS(
       css`
         font-family: "Public Sans";
       `
     ),
-    "l5tnu4"
+    `css="l5tnu4"`
   );
   assert.equal(
-    prettier.format(html`$${pageLocalCSS.toString()}`, { parser: "html" }),
+    prettier.format(html`$${pageCSS.toString()}`, { parser: "html" }),
     prettier.format(
       html`
         <style key="local-css">
