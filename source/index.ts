@@ -27,19 +27,19 @@ export function processCSS(css: CSS): CSS {
 export function localCSS(): { (css_: CSS): string; toString(): CSS } {
   const parts = new Map<string, CSS>();
   const addPart = (css_: CSS): string => {
-    const attribute = `css="${murmurHash2(css_)}"`;
-    if (!parts.has(attribute))
+    const key = murmurHash2(css_);
+    if (!parts.has(key))
       parts.set(
-        attribute,
+        key,
         processCSS(
           css`
-            ${`[${attribute}]`.repeat(6)} {
+            ${`[css="${key}"]`.repeat(6)} {
               ${css_}
             }
           `
         )
       );
-    return attribute;
+    return key;
   };
   addPart.toString = () =>
     html`
@@ -75,7 +75,7 @@ if (process.env.TEST === "leafac--css") {
         `
       )}
     `),
-    `css="1qpnq7t"`
+    "1qpnq7t"
   );
   assert.equal(
     pageCSS(
@@ -83,7 +83,7 @@ if (process.env.TEST === "leafac--css") {
         font-family: "Public Sans";
       `
     ),
-    `css="l5tnu4"`
+    "l5tnu4"
   );
   assert.equal(
     pageCSS(
@@ -91,7 +91,7 @@ if (process.env.TEST === "leafac--css") {
         font-family: "Public Sans";
       `
     ),
-    `css="l5tnu4"`
+    "l5tnu4"
   );
   assert.equal(
     prettier.format(html`$${pageCSS.toString()}`, { parser: "html" }),
