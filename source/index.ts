@@ -140,8 +140,9 @@ export function css(
   for (let index = 0; index < inputParts.length; index++) {
     outputParts.push(inputParts[index]);
     const interpolation = interpolations[index];
-    if (Array.isArray(interpolation)) outputParts.push(...interpolation);
-    else outputParts.push(interpolation);
+    outputParts.push(
+      ...(Array.isArray(interpolation) ? interpolation : [interpolation])
+    );
   }
   return outputParts.join("");
 }
