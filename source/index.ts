@@ -568,11 +568,11 @@ if (process.env.PREPARE === "leafac--css")
         @keyframes bounce {
           0%,
           100% {
-            transform: translateY(-25%);
+            transform: translateY(0%);
             animationtimingfunction: cubic-bezier(0.8, 0, 1, 1);
           }
           50% {
-            transform: translateY(0);
+            transform: translateY(-20%);
             animationtimingfunction: cubic-bezier(0, 0, 0.2, 1);
           }
         }
