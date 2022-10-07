@@ -2,7 +2,10 @@
   "name": "@leafac/css",
   "version": "0.6.1",
   "description": "Radically Straightforward CSS",
-  "exports": "./distribution/index.js",
+  "exports": {
+    ".": "./distribution/index.js",
+    "./distribution/browser.css": "./distribution/browser.css"
+  },
   "types": "./distribution/index.d.ts",
   "repository": "leafac/css",
   "keywords": [
