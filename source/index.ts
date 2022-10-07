@@ -1,9 +1,6 @@
 import fs from "node:fs/promises";
 import url from "node:url";
-import murmurHash2Import from "@emotion/hash";
-// FIXME: There’s something weird with this import.
-const murmurHash2 = (murmurHash2Import as any)
-  .default as typeof murmurHash2Import;
+import murmurHash2 from "@emotion/hash";
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
 import autoprefixer from "autoprefixer";
@@ -12,7 +9,7 @@ import assert from "node:assert/strict";
 
 export type CSS = string;
 
-export const postcssProcessor = postcss([postcssNested, autoprefixer]);
+export const postcssProcessor = postcss.default([postcssNested, autoprefixer]);
 export const processedCSSCache = new Map<CSS, CSS>();
 
 export function processCSS(css: CSS): CSS {
@@ -27,7 +24,7 @@ export function processCSS(css: CSS): CSS {
 export function localCSS(): { (css_: CSS): string; toString(): CSS } {
   const parts = new Map<string, CSS>();
   const addPart = (css_: CSS): string => {
-    const key = murmurHash2(css_);
+    const key = murmurHash2.default(css_);
     if (!parts.has(key))
       parts.set(
         key,
