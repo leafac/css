@@ -29,7 +29,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "type": "module",
   "scripts": {
     "test": "prettier --check \"source/**/*\" --end-of-line auto && npm run prepare && cross-env TEST=leafac--css node ./distribution/index.js",
     "prepare": "tsc && cross-env PREPARE=leafac--css node ./distribution/index.js"
