@@ -11,8 +11,8 @@
     "template strings"
   ],
   "homepage": "https://github.com/leafac/css",
+  "repository": "https://github.com/leafac/css",
   "bugs": "https://github.com/leafac/css/issues",
-  "repository": "leafac/css",
   "funding": [
     "https://patreon.com/leafac",
     "https://paypal.me/LeandroFacchinettiEU",
