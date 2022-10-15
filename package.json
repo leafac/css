@@ -2,11 +2,6 @@
   "name": "@leafac/css",
   "version": "0.7.0",
   "description": "Radically Straightforward CSS",
-  "author": "Leandro Facchinetti <css@leafac.com> (https://leafac.com)",
-  "homepage": "https://github.com/leafac/css",
-  "bugs": "https://github.com/leafac/css/issues",
-  "repository": "leafac/css",
-  "license": "MIT",
   "keywords": [
     "css",
     "postcss",
@@ -15,12 +10,17 @@
     "tagged template literal",
     "template strings"
   ],
+  "homepage": "https://github.com/leafac/css",
+  "bugs": "https://github.com/leafac/css/issues",
+  "repository": "leafac/css",
   "funding": [
     "https://patreon.com/leafac",
     "https://paypal.me/LeandroFacchinettiEU",
     "https://github.com/sponsors/leafac",
     "https://btc.com/34KJBgtaFYMtDqpSgMayw9qiKWg2GQXA9M"
   ],
+  "author": "Leandro Facchinetti <css@leafac.com> (https://leafac.com)",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
