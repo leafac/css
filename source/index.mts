@@ -4,7 +4,7 @@ import murmurHash2 from "@emotion/hash";
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
 import autoprefixer from "autoprefixer";
-import { html } from "@leafac/html";
+import html from "@leafac/html";
 import assert from "node:assert/strict";
 
 export type CSS = string;
