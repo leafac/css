@@ -10,23 +10,29 @@ import assert from "node:assert/strict";
 export type CSS = string;
 
 export function css(
-  inputParts: TemplateStringsArray,
-  ...interpolations: (CSS | CSS[])[]
+  templateStrings: TemplateStringsArray,
+  ...substitutions: (CSS | CSS[])[]
 ): CSS {
-  const outputParts: CSS[] = [];
-  interpolations.push("");
-  for (let index = 0; index < inputParts.length; index++) {
-    outputParts.push(inputParts[index]);
-    const interpolation = interpolations[index];
-    outputParts.push(
-      ...(Array.isArray(interpolation) ? interpolation : [interpolation])
-    );
+  let output = "";
+
+  for (const index of substitutions.keys()) {
+    const templateString = templateStrings[index];
+    output += templateString;
+
+    const substitution = substitutions[index];
+    if (Array.isArray(substitution))
+      for (const substitutionPart of substitution) output += substitutionPart;
+    else output += substitution;
   }
-  return outputParts.join("");
+
+  output += templateStrings[templateStrings.length - 1];
+
+  return output;
 }
 
 export function localCSS(): { (css_: CSS): string; toString(): CSS } {
   const parts = new Map<string, CSS>();
+
   const addPart = (css_: CSS): string => {
     const key = murmurHash2.default(css_);
     if (!parts.has(key))
