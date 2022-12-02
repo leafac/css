@@ -46,6 +46,7 @@ export function localCSS(): { (css_: CSS): string; toString(): CSS } {
     `;
   return addPart;
 }
+
 if (process.env.TEST === "leafac--css") {
   const prettier = await import("prettier");
   const pageCSS = localCSS();
