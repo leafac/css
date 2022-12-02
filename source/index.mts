@@ -68,8 +68,8 @@ export function processCSS(css: CSS): CSS {
   return processedCSS;
 }
 
-export const postcssProcessor = postcss.default([postcssNested, autoprefixer]);
 export const processedCSSCache = new Map<CSS, CSS>();
+export const postcssProcessor = postcss.default([postcssNested, autoprefixer]);
 
 if (process.env.TEST === "leafac--css") {
   const prettier = await import("prettier");
