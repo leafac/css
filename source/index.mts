@@ -9,16 +9,20 @@ import assert from "node:assert/strict";
 
 export type CSS = string;
 
-export const postcssProcessor = postcss.default([postcssNested, autoprefixer]);
-export const processedCSSCache = new Map<CSS, CSS>();
-
-export function processCSS(css: CSS): CSS {
-  let processedCSS = processedCSSCache.get(css);
-  if (processedCSS === undefined) {
-    processedCSS = postcssProcessor.process(css).css;
-    processedCSSCache.set(css, processedCSS);
+export function css(
+  inputParts: TemplateStringsArray,
+  ...interpolations: (CSS | CSS[])[]
+): CSS {
+  const outputParts: CSS[] = [];
+  interpolations.push("");
+  for (let index = 0; index < inputParts.length; index++) {
+    outputParts.push(inputParts[index]);
+    const interpolation = interpolations[index];
+    outputParts.push(
+      ...(Array.isArray(interpolation) ? interpolation : [interpolation])
+    );
   }
-  return processedCSS;
+  return outputParts.join("");
 }
 
 export function localCSS(): { (css_: CSS): string; toString(): CSS } {
@@ -38,14 +42,28 @@ export function localCSS(): { (css_: CSS): string; toString(): CSS } {
       );
     return key;
   };
+
   addPart.toString = () =>
     html`
       <style key="local-css">
         $${[...parts.values()].reverse()}
       </style>
     `;
+
   return addPart;
 }
+
+export function processCSS(css: CSS): CSS {
+  let processedCSS = processedCSSCache.get(css);
+  if (processedCSS === undefined) {
+    processedCSS = postcssProcessor.process(css).css;
+    processedCSSCache.set(css, processedCSS);
+  }
+  return processedCSS;
+}
+
+export const postcssProcessor = postcss.default([postcssNested, autoprefixer]);
+export const processedCSSCache = new Map<CSS, CSS>();
 
 if (process.env.TEST === "leafac--css") {
   const prettier = await import("prettier");
@@ -127,22 +145,6 @@ if (process.env.TEST === "leafac--css") {
       { parser: "html" }
     )
   );
-}
-
-export function css(
-  inputParts: TemplateStringsArray,
-  ...interpolations: (CSS | CSS[])[]
-): CSS {
-  const outputParts: CSS[] = [];
-  interpolations.push("");
-  for (let index = 0; index < inputParts.length; index++) {
-    outputParts.push(inputParts[index]);
-    const interpolation = interpolations[index];
-    outputParts.push(
-      ...(Array.isArray(interpolation) ? interpolation : [interpolation])
-    );
-  }
-  return outputParts.join("");
 }
 
 if (process.env.PREPARE === "leafac--css")
@@ -835,7 +837,9 @@ if (process.env.PREPARE === "leafac--css")
         https://accessibility.18f.gov/hidden-content/
       */
       .visually-hidden,
-      .visually-hidden--interactive:not(:focus):not(:focus-within):not(:active) {
+      .visually-hidden--interactive:not(:focus):not(:focus-within):not(
+          :active
+        ) {
         width: 1px;
         height: 1px;
         padding: 0;
