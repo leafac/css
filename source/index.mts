@@ -31,32 +31,33 @@ export default function css(
 }
 
 export function localCSS(): { (css_: CSS): string; toString(): CSS } {
-  const parts = new Map<string, CSS>();
+  let stylesheet = "";
+  const keys = new Set<string>();
 
-  const addPart = (css_: CSS): string => {
+  const output = (css_: CSS): string => {
     const key = murmurHash2.default(css_);
-    if (!parts.has(key))
-      parts.set(
-        key,
+    if (!keys.has(key)) {
+      keys.add(key);
+      stylesheet =
         processCSS(
           css`
             ${`[css="${key}"]`.repeat(6)} {
               ${css_}
             }
           `
-        )
-      );
+        ) + stylesheet;
+    }
     return key;
   };
 
-  addPart.toString = () =>
+  output.toString = () =>
     html`
       <style key="local-css">
-        $${[...parts.values()].reverse()}
+        $${stylesheet}
       </style>
     `;
 
-  return addPart;
+  return output;
 }
 
 export function processCSS(css: CSS): CSS {
