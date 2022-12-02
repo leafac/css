@@ -3,6 +3,8 @@
 - Use explicit names like `large` instead of `lg`
 - Normalize spaces with .replace(/\s/+, " "). This should reduce the number of redundant classes.
 - Document: Don’t use #ids, because of specificity (use `key=""`s instead, for compatibility with @leafac/javascript)
+
+Don’t interpolate with user data, or you’ll blow up the cache
 -->
 
 # This documentation is a work-in-progress. The library itself is ready for consumption for early adopters.
