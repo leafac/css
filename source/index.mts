@@ -9,7 +9,7 @@ import assert from "node:assert/strict";
 
 export type CSS = string;
 
-export function css(
+export default function css(
   templateStrings: TemplateStringsArray,
   ...substitutions: (CSS | CSS[])[]
 ): CSS {
