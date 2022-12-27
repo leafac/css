@@ -1,4 +1,37 @@
 <!--
+Pull CSS from source code at build time:
+
+```
+// npm install @babel/parser @babel/traverse @babel/types @babel/generator
+
+import fs from "node:fs/promises";
+import babelParser from "@babel/parser";
+import babelTraverse from "@babel/traverse";
+import babelTypes from "@babel/types";
+import babelGenerator from "@babel/generator";
+
+const input = await fs.readFile("input.mjs", "utf-8");
+const ast = babelParser.parse(input);
+// console.log(JSON.stringify(ast, undefined, 2));
+babelTraverse.default(ast, {
+  TaggedTemplateExpression(path) {
+    if (path.node.tag.name === "css")
+      path.replaceWith(babelTypes.stringLiteral("banana"));
+  },
+});
+const output = babelGenerator.default(ast).code;
+console.log(output);
+```
+
+
+
+
+
+
+
+
+
+
 - Update to Tailwind 3
 - Use explicit names like `large` instead of `lg`
 - Normalize spaces with .replace(/\s/+, " "). This should reduce the number of redundant classes.
