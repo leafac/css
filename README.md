@@ -1,6 +1,45 @@
 <!--
 Pull CSS from source code at build time:
 
+
+```
+import fs from "node:fs/promises";
+import recast from "recast";
+
+const input = await fs.readFile("input.mjs", "utf-8");
+const ast = recast.parse(input, {
+  sourceFileName: "input.mjs",
+});
+// console.log(JSON.stringify(ast, undefined, 2));
+
+let css = "";
+
+recast.visit(ast, {
+  visitTaggedTemplateExpression(path) {
+    if (path.node.tag.name !== "css" || path.node.quasi.quasis.length !== 1)
+      return this.traverse(path);
+
+    css += path.node.quasi.quasis[0].value.cooked;
+
+    path.replace(recast.types.builders.stringLiteral("banana"));
+
+    return false;
+  },
+});
+
+const output = recast.print(ast, { sourceMapName: "output.mjs" });
+console.log("output.mjs");
+console.log();
+console.log(output.code);
+console.log();
+// console.log(output.map);
+
+console.log("output.css");
+console.log();
+console.log(css);
+console.log();
+```
+
 ```
 // npm install @babel/parser @babel/traverse @babel/types @babel/generator
 
