@@ -4,7 +4,7 @@
   "description": "Radically Straightforward CSS",
   "keywords": [
     "css",
-    "tagged template literal",
+    "tagged template",
     "design system"
   ],
   "homepage": "https://github.com/leafac/css",
@@ -22,12 +22,19 @@
     "access": "public"
   },
   "exports": {
+    ".": "./build/index.mjs",
     "./static/index.css": "./static/index.css"
   },
   "scripts": {
-    "test": "prettier --check \"./README.md\" --check \"./package.json\" --check \"./static/**/*.css\" --end-of-line auto"
+    "prepare": "tsc",
+    "test": "prettier --check \"./README.md\" --check \"./package.json\" --check \"./source/**/*.mts\" --check \"./static/**/*.css\" --end-of-line auto"
+  },
+  "dependencies": {
+    "@leafac/tagged-template": "^0.0.1"
   },
   "devDependencies": {
-    "prettier": "^2.8.0"
+    "@types/node": "^18.11.18",
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4"
   }
 }
