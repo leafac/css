@@ -28,21 +28,12 @@
   "types": "./build/index.d.mts",
   "scripts": {
     "prepare": "tsc",
-    "test": "prettier --check \"./source/**/*.mts\" --check \"./static/**/*.css\" --end-of-line auto && npm run prepare && cross-env TEST=leafac--css node ./build/index.mjs"
-  },
-  "dependencies": {
-    "@emotion/hash": "^0.9.0",
-    "@leafac/html": "^4.0.0",
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.19",
-    "postcss-nested": "^6.0.0"
+    "test": "prettier --check \"./source/**/*.mts\" --check \"./static/**/*.css\" --end-of-line auto && npm run prepare && cross-env TEST=@leafac/css node ./build/index.mjs"
   },
   "devDependencies": {
     "@types/node": "^18.11.10",
-    "@types/prettier": "^2.7.1",
     "cross-env": "^7.0.3",
     "prettier": "^2.8.0",
-    "shx": "^0.3.4",
     "typescript": "^4.9.3"
   }
 }

@@ -72,7 +72,7 @@ export function processCSS(css: CSS): CSS {
 export const processedCSSCache = new Map<CSS, CSS>();
 export const postcssProcessor = postcss.default([postcssNested, autoprefixer]);
 
-if (process.env.TEST === "leafac--css") {
+if (process.env.TEST === "@leafac/css") {
   const prettier = await import("prettier");
   const pageCSS = localCSS();
   assert.equal(
@@ -154,7 +154,7 @@ if (process.env.TEST === "leafac--css") {
   );
 }
 
-if (process.env.PREPARE === "leafac--css")
+if (process.env.PREPARE === "@leafac/css")
   await fs.writeFile(
     url.fileURLToPath(new URL("./browser.css", import.meta.url)),
     processCSS(css`
