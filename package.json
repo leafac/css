@@ -25,6 +25,7 @@
     ".": "./build/index.mjs",
     "./static/index.css": "./static/index.css"
   },
+  "types": "./build/index.d.mts",
   "scripts": {
     "prepare": "tsc",
     "test": "prettier --check \"./README.md\" --check \"./package.json\" --check \"./source/**/*.mts\" --check \"./static/**/*.css\" --end-of-line auto"
