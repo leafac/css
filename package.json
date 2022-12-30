@@ -4,11 +4,8 @@
   "description": "Radically Straightforward CSS",
   "keywords": [
     "css",
-    "postcss",
-    "css nesting",
-    "css preprocessor",
     "tagged template literal",
-    "template strings"
+    "design system"
   ],
   "homepage": "https://github.com/leafac/css",
   "repository": "https://github.com/leafac/css",
@@ -26,11 +23,11 @@
   },
   "exports": {
     ".": "./build/index.mjs",
-    "./build/browser.css": "./build/browser.css"
+    "./browser.css": "./build/browser.css"
   },
   "types": "./build/index.d.mts",
   "scripts": {
-    "prepare": "tsc && cross-env PREPARE=leafac--css node ./build/index.mjs",
+    "prepare": "tsc",
     "test": "prettier --check \"source/**/*.mts\" --end-of-line auto && npm run prepare && cross-env TEST=leafac--css node ./build/index.mjs"
   },
   "dependencies": {
@@ -45,6 +42,7 @@
     "@types/prettier": "^2.7.1",
     "cross-env": "^7.0.3",
     "prettier": "^2.8.0",
+    "shx": "^0.3.4",
     "typescript": "^4.9.3"
   }
 }
