@@ -25,7 +25,7 @@
     "./static/index.css": "./static/index.css"
   },
   "scripts": {
-    "test": "prettier --check \"./static/**/*.css\" --end-of-line auto"
+    "test": "prettier --check \"./README.md\" --check \"./package.json\" --check \"./static/**/*.css\" --end-of-line auto"
   },
   "devDependencies": {
     "prettier": "^2.8.0"
