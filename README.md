@@ -1,3 +1,5 @@
+# ⚠️ WORK IN PROGRESS ⚠️
+
 <!--
 Pull CSS from source code at build time:
 
@@ -77,11 +79,8 @@ console.log(output);
 - Document: Don’t use #ids, because of specificity (use `key=""`s instead, for compatibility with @leafac/javascript)
 
 Don’t interpolate with user data, or you’ll blow up the cache
--->
 
-# This documentation is a work-in-progress. The library itself is ready for consumption for early adopters.
 
-<!--
 <h1 align="center">@leafac/css</h1>
 <h3 align="center">Radically Straightforward CSS</h3>
 <p align="center">
@@ -259,7 +258,7 @@ style -> data-style ??? -->
 
 <!-- * My approach to css & ondomcontentloaded is just object oriented programming -->
 
-<!-- 
+<!--
 
 
 
