@@ -23,12 +23,12 @@
   },
   "exports": {
     ".": "./build/index.mjs",
-    "./browser.css": "./build/browser.css"
+    "./index.css": "./static/index.css"
   },
   "types": "./build/index.d.mts",
   "scripts": {
     "prepare": "tsc",
-    "test": "prettier --check \"source/**/*.mts\" --end-of-line auto && npm run prepare && cross-env TEST=leafac--css node ./build/index.mjs"
+    "test": "prettier --check \"./source/**/*.mts\" --check \"./static/**/*.css\" --end-of-line auto && npm run prepare && cross-env TEST=leafac--css node ./build/index.mjs"
   },
   "dependencies": {
     "@emotion/hash": "^0.9.0",
