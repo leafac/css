@@ -22,7 +22,7 @@
     "access": "public"
   },
   "exports": {
-    "./index.css": "./static/index.css"
+    "./static/index.css": "./static/index.css"
   },
   "scripts": {
     "test": "prettier --check \"./static/**/*.css\" --end-of-line auto"
