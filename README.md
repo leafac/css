@@ -3,7 +3,28 @@
 <!--
 
 
-
+```
+If you wish to overwrite styles set by the parent, use the `&& { ... }` pattern
+<div
+  css="${css`
+    p {
+      background-color: green;
+    }
+  `}"
+>
+  <p>Hello</p>
+  <p
+    css="${css`
+      && {
+        background-color: blue;
+      }
+    `}"
+  >
+    Hello
+  </p>
+  <p>Hello</p>
+</div>
+```
 
 
 
