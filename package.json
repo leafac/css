@@ -22,7 +22,7 @@
     "access": "public"
   },
   "exports": {
-    ".": "./build/build/index.mjs",
+    ".": "./build/index.mjs",
     "./static/index.css": "./build/static/index.css"
   },
   "types": "./build/index.d.mts",
