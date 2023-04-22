@@ -10,6 +10,8 @@
 `gray--true` → `neutral`
 `gray--warm` → `stone`
 
+`900` → `950`
+
 ---
 
 ```
