@@ -2,6 +2,15 @@
 
 <!--
 
+0.9.6 → 0.10.0
+
+`gray--blue` → `slate`
+`gray--cool` → `gray`
+`gray--medium` → `zinc`
+`gray--true` → `neutral`
+`gray--warm` → `stone`
+
+---
 
 ```
 https://open-props.style
